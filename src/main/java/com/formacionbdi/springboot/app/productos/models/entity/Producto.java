@@ -3,14 +3,7 @@ package com.formacionbdi.springboot.app.productos.models.entity;
 import java.io.Serializable;
 import java.util.Date;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "productos")
@@ -21,6 +14,11 @@ public class Producto implements Serializable {
 	private Long id;
 	private String nombre;
 	private Double precio;
+
+
+
+	@Transient //para indicar que no esta mapeado a nada en la BBDD
+	private Integer port;
 	
 	@Column(name="create_at") //nombre de columna SIEMPRE CON MINUSCULA
 	@Temporal(TemporalType.DATE) //con esto pasa la fecha desde java.util.date a java.sql.date
@@ -49,6 +47,8 @@ public class Producto implements Serializable {
 	public void setCreateAt(Date createAt) {
 		this.createAt = createAt;
 	}
+	public Integer getPort() {return port;}
+	public void setPort(Integer port) {this.port = port; }
 	
 	
 	/**
